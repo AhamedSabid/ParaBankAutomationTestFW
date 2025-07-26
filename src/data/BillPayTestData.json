@@ -1,0 +1,10 @@
+{
+  "name": "Electric Company",
+  "street": "123 Elec St",
+  "city": "NYC",
+  "state": "NY",
+  "zip": "10001",
+  "phone": "9998887777",
+  "accountNo": "888888",
+  "amount": "25"
+}

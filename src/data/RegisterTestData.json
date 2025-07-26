@@ -1,0 +1,10 @@
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "address": "123 Main",
+  "city": "LA",
+  "state": "CA",
+  "zip": "90001",
+  "phone": "1234567890",
+  "ssn": "111-22-3333"
+}
