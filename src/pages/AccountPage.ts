@@ -9,7 +9,12 @@ export class AccountPage {
     await this.page.waitForTimeout(3000);
     await this.page.click('//input[@value="Open New Account"]');
     await this.page.waitForSelector('#openAccountResult');
-    return await this.page.locator('#newAccountId').textContent();
+    //return await this.page.locator('#newAccountId').textContent();
+    const accountId = await this.page.locator('#newAccountId').textContent();
+    if (!accountId) {
+      throw new Error('Account ID not found!');
+    }
+    return accountId;
   }
 
   async verifyAccountDetails(accountId: string) {

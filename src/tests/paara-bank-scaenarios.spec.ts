@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect,request } from '@playwright/test';
 import { getRandomUsername } from '../util/randomUtil';
 import { HomePage } from '../pages/HomePage';
 import { RegisterPage } from '../pages/RegisterPage';
@@ -8,6 +8,9 @@ import { TransferFundsPage } from '../pages/TransferFundsPage';
 import { BillPayPage } from '../pages/BillPayPage';
 import * as userData from '../data/RegisterTestData.json';
 import * as billData from '../data/BillPayTestData.json';
+
+test.describe.configure({ mode: 'serial' });
+var accountId: string = '';
 
 test('Register, Login, Account and BillPay Flow', async ({ page }) => {
 
@@ -43,7 +46,8 @@ test('Register, Login, Account and BillPay Flow', async ({ page }) => {
   await loginPage.login(username, password);
   await expect(page.locator('#overviewAccountsApp')).toBeVisible();
 
-  const accountId = await accountPage.openNewAccount();
+  
+  accountId = await accountPage.openNewAccount();
   expect(accountId).not.toBeNull();
 
   const details = await accountPage.verifyAccountDetails(accountId!);
@@ -67,3 +71,35 @@ test('Register, Login, Account and BillPay Flow', async ({ page }) => {
 
   await page.close();
 });
+
+
+test('Validate Transaction by Amount from API', async ({ request }) => {
+  const baseURL = 'https://parabank.parasoft.com/parabank/services/bank';
+  // how to dynamically capture this from UI step 5 from the previous test
+  // dynamically capture this from UI step 5
+  const amount = 50;
+
+  const response = await request.get(`${baseURL}/findTransByAmount`, {
+    params: {
+      accountId: accountId,
+      amount: amount
+    }
+  });
+
+  expect(response.ok()).toBeTruthy();
+
+  const responseBody = await response.json();
+
+  console.log('API Response:', responseBody);
+
+  // Assertions (sample structure — adjust as per actual API response)
+  expect(responseBody).toBeInstanceOf(Array);
+  expect(responseBody.length).toBeGreaterThan(0);
+
+  for (const txn of responseBody) {
+    expect(txn.amount).toBe(amount);
+    expect(txn.accountId).toBe(accountId);
+    expect(new Date(txn.transactionDate)).not.toBeNaN(); // date valid
+  }
+});
+
