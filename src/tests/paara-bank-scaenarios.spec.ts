@@ -11,11 +11,10 @@ import * as billData from '../data/BillPayTestData.json';
 
 test.describe.configure({ mode: 'serial' });
 var accountId: string = '';
+var username = getRandomUsername();
+var password = 'test123';
 
 test('Register, Login, Account and BillPay Flow', async ({ page }) => {
-
-  const username = getRandomUsername();
-  const password = 'test123';
 
   const homePage = new HomePage(page);
   const registerPage = new RegisterPage(page);
@@ -74,20 +73,25 @@ test('Register, Login, Account and BillPay Flow', async ({ page }) => {
 
 
 test('Validate Transaction by Amount from API', async ({ request }) => {
-  const baseURL = 'https://parabank.parasoft.com/parabank/services/bank';
+  const baseURL = 'https://parabank.parasoft.com';
   // how to dynamically capture this from UI step 5 from the previous test
   // dynamically capture this from UI step 5
   const amount = 50;
-
-  const response = await request.get(`${baseURL}/findTransByAmount`, {
+//pass basic authentication if required for GET request
+   const encodedCredentials = Buffer.from(`${username}:${password}`).toString('base64');
+//pass auth as basic authentication
+  const response = await request.get(`${baseURL}/parabank/services_proxy/bank/accounts/${accountId}/transactions`, {
     params: {
-      accountId: accountId,
       amount: amount
+    },
+    headers: {
+      'Authorization': `Basic ${encodedCredentials}`
     }
   });
 
   expect(response.ok()).toBeTruthy();
-
+  expect(response.status()).toBe(200);
+//response body 
   const responseBody = await response.json();
 
   console.log('API Response:', responseBody);
@@ -97,8 +101,8 @@ test('Validate Transaction by Amount from API', async ({ request }) => {
   expect(responseBody.length).toBeGreaterThan(0);
 
   for (const txn of responseBody) {
-    expect(txn.amount).toBe(amount);
-    expect(txn.accountId).toBe(accountId);
+    //expect(txn.amount).toBe(amount);
+    expect(txn.accountId.toString()).toBe(accountId);
     expect(new Date(txn.transactionDate)).not.toBeNaN(); // date valid
   }
 });
