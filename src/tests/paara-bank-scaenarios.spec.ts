@@ -72,7 +72,7 @@ test('Register, Login, Account and BillPay Flow', async ({ page }) => {
 });
 
 
-test('Validate Transaction by Amount from API', async ({ request }) => {
+test('Validate Transactions from API', async ({ request }) => {
   const baseURL = 'https://parabank.parasoft.com';
   // how to dynamically capture this from UI step 5 from the previous test
   // dynamically capture this from UI step 5
