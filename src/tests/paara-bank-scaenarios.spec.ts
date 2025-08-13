@@ -8,6 +8,7 @@ import { TransferFundsPage } from '../pages/TransferFundsPage';
 import { BillPayPage } from '../pages/BillPayPage';
 import * as userData from '../data/RegisterTestData.json';
 import * as billData from '../data/BillPayTestData.json';
+import { allure} from 'allure-playwright';
 
 test.describe.configure({ mode: 'serial' });
 var accountId: string = '';
@@ -15,6 +16,12 @@ var username = getRandomUsername();
 var password = 'test123';
 
 test('Register, Login, Account and BillPay Flow', async ({ page }) => {
+
+  allure.label("owner", "Ahamed");
+  allure.feature("TC-001- Register, Login, Account and BillPay Flow");
+  allure.story("Verify - Register, Login, Account and BillPay Flow");
+  allure.severity("critical");
+  allure.link("https://parabank.parasoft.com/", "Application Under Test");
 
   const homePage = new HomePage(page);
   const registerPage = new RegisterPage(page);
@@ -73,6 +80,13 @@ test('Register, Login, Account and BillPay Flow', async ({ page }) => {
 
 
 test('Validate Transactions from API', async ({ request }) => {
+
+  allure.label("owner", "Ahamed");
+  allure.feature("TC-002- Validate Transactions from API");
+  allure.story("Verify - Transactions from API");
+  allure.severity("critical");
+  allure.link("https://parabank.parasoft.com/", "Application Under Test");
+
   const baseURL = 'https://parabank.parasoft.com';
   // how to dynamically capture this from UI step 5 from the previous test
   // dynamically capture this from UI step 5

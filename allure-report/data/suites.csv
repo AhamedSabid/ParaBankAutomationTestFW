@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","1090","Validate Transactions from API","chromium","Wed Aug 13 09:47:52 IST 2025","passed","Wed Aug 13 09:47:54 IST 2025","","paara-bank-scaenarios.spec.ts","",""
+"","14548","Register, Login, Account and BillPay Flow","chromium","Wed Aug 13 09:47:37 IST 2025","passed","Wed Aug 13 09:47:52 IST 2025","","paara-bank-scaenarios.spec.ts","",""
+"","593","Validate Transactions from API","webkit","Wed Aug 13 09:48:50 IST 2025","passed","Wed Aug 13 09:48:51 IST 2025","","paara-bank-scaenarios.spec.ts","",""
+"","576","Validate Transactions from API","firefox","Wed Aug 13 09:48:26 IST 2025","passed","Wed Aug 13 09:48:27 IST 2025","","paara-bank-scaenarios.spec.ts","",""
+"","18009","Register, Login, Account and BillPay Flow","webkit","Wed Aug 13 09:48:32 IST 2025","passed","Wed Aug 13 09:48:50 IST 2025","","paara-bank-scaenarios.spec.ts","",""
+"","21390","Register, Login, Account and BillPay Flow","firefox","Wed Aug 13 09:47:57 IST 2025","passed","Wed Aug 13 09:48:19 IST 2025","","paara-bank-scaenarios.spec.ts","",""

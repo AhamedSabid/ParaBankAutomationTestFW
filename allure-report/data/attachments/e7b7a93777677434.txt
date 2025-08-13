@@ -1,0 +1,34 @@
+API Response: [
+  {
+    id: 23578,
+    accountId: 20115,
+    type: 'Credit',
+    date: 1755043200000,
+    amount: 100,
+    description: 'Funds Transfer Received'
+  },
+  {
+    id: 23689,
+    accountId: 20115,
+    type: 'Debit',
+    date: 1755043200000,
+    amount: 50,
+    description: 'Funds Transfer Sent'
+  },
+  {
+    id: 23800,
+    accountId: 20115,
+    type: 'Credit',
+    date: 1755043200000,
+    amount: 50,
+    description: 'Funds Transfer Received'
+  },
+  {
+    id: 23911,
+    accountId: 20115,
+    type: 'Debit',
+    date: 1755043200000,
+    amount: 25,
+    description: 'Bill Payment to Electric Company'
+  }
+]
